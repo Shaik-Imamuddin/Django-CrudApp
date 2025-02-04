@@ -1,0 +1,152 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction List</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: #444;
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+/* Form Styles */
+/* Form Container */
+.form {
+    width: 600px; /* Set a width for the form */
+    height: 150px;
+    margin: 20px auto; /* Center the form horizontally */
+    display: block; /* Ensures elements are stacked vertically */
+    padding: 0px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Input Field */
+#search{
+    width:400px; /* Make input take the full width of the form */
+    padding: 10px;
+    margin-bottom: 10px; /* Space between input and button */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Button */
+#sbtn {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Button Hover Effect */
+form button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Navigation Links */
+.btn{
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;      /* Centers vertically */
+    margin-bottom: 50px;
+}
+#addbtn{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px #007bff;
+}
+
+/* Table Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 80%;
+    margin: 0 auto;
+}
+
+ul li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#edit,#delete {
+    margin-left: 15px;
+    padding: 5px 10px;
+    font-size: 20px;
+    background-color: #ffc107;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul li a:hover {
+    background-color: #e0a800;
+}
+
+#delete {
+    background-color: #dc3545;
+}
+
+ul li a:last-child:hover {
+    background-color: #c82333;
+}
+    </style>
+</head>
+<body>
+    <h1>Transaction List</h1>
+    <div class="form">
+        <form method="get" action="">
+            <input id="search" type="text" name="search" placeholder="Search transactions...">
+            <button id="sbtn" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="btn">
+        <a  id="addbtn" href="{% url 'add_transaction' %}">Add Transaction</a>
+    </div>
+    <ul>
+        {% for transaction in transactions %}
+            <li>
+                {{ transaction.description }} - ${{ transaction.amount }} - {{ transaction.date }}
+                <a id="edit" href="{% url 'edit_transaction' transaction.pk %}">Edit</a>
+                <a id="delete" href="{% url 'delete_transaction' transaction.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
