@@ -1,3 +1,10 @@
+Tech Stack:
+
+Django & Python : For rapid development and a clean, modular codebase.
+HTML, CSS : To craft a responsive and interactive front end.
+MySQL : For reliable data storage and retrieval.
+Git & GitHub: For version control and collaborative development.
+
 Install Required Libraries
 
 pip install django mysqlclient
